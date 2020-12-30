@@ -1,0 +1,16 @@
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Lab3.BLL.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Lab3.BLL.pdb
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\AutoMapper.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Lab3.DAL.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Ninject.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\EntityFramework.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\AutoMapper.xml
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Lab3.DAL.pdb
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Lab3.DAL.dll.config
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\Ninject.xml
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\bin\Debug\EntityFramework.xml
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\obj\Debug\Lab3.BLL.csprojAssemblyReference.cache
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\obj\Debug\Lab3.BLL.csproj.CoreCompileInputs.cache
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\obj\Debug\Lab3.BLL.csproj.CopyComplete
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\obj\Debug\Lab3.BLL.dll
+C:\Users\vovad\source\repos\LAB3-5MultiLayer\Lab3.BLL\obj\Debug\Lab3.BLL.pdb

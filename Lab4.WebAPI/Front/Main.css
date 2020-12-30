@@ -1,0 +1,205 @@
+﻿body {
+    background: rgb(185,36,255);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100%;
+}
+
+.login {
+    width: 50vw;
+    height: auto;
+    margin: 25vh auto;
+    overflow: hidden;
+}
+
+.login h1 {
+    margin: 0 auto 2rem;
+    width: fit-content;
+    font-size: 1.75rem;
+    font-weight: 600;
+}
+
+.loginInput {
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    background: white;
+}
+
+ input, select {
+    border: 0;
+}
+
+.input:focus, select:focus {
+    outline: 0;
+}
+
+#btn{
+    width: fit-content;
+    margin: 2rem auto;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: white;
+    background: rgb(185, 20, 185);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+#btn:hover {
+    background: rgba(185, 20, 185, 0.8);
+    transition: all 0.5s ease-in-out;
+}
+
+.btn {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    color: white;
+    background: rgb(185, 20, 185);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.btn:hover {
+    background: rgba(185, 20, 185, 0.8);
+    transition: all 0.5s ease-in-out;
+}
+
+#modal {
+    display: none;
+    position: absolute;
+    width: 20vw;
+    height: 15vh;
+    top: 42.5vh;
+    right: 15vw;
+    background: white;
+    padding: 1rem;
+    color: red;
+    transition: all 0.5s ease-in-out;
+}
+
+#modal.active {
+    display: block;
+    transition: all 0.5s ease-in-out;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 4rem 20vw;
+    box-sizing: border-box;
+}
+
+.head {
+    margin: 4rem 0 2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+
+}
+
+#userHi {
+    width: fit-content;
+    margin: 0 auto 0 0;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.head p {
+    margin-right: 1rem;
+    line-height: 2rem;
+}
+
+.balance {
+    font-size: 2rem;
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: 4rem;
+}
+
+#CardBalance {
+    font-weight: 600;
+}
+
+.shop-container {
+    background: white;
+    color: black;
+    padding: 1.5rem 1.5rem 3.5rem;
+    margin-bottom: 4rem;
+}
+
+.shop-container h2{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.shop {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.menu {
+    width: calc(100% / 3);
+}
+
+.menu h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgb(255, 100, 255);
+}
+
+.menu select {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */      
+}
+
+.menu select::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.menu-window {
+    width: 60%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.menuInput {
+    margin: 0 auto 1rem;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    background: white;
+    border: 1px solid rgb(255,100,255);
+}
+
+.button-container {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+}
+
+.button-container div {
+    margin-left: 1rem;
+}
+
+.input-container {
+    width: 50%;
+}
+
+.input-container input {
+    width: 100%;
+}
+
+table {
+    font-family: 'Roboto Mono', monospace;
+}
+
+table tr td:nth-child(2){
+    text-align: center;
+}

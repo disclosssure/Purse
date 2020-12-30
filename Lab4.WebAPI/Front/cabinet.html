@@ -1,0 +1,227 @@
+﻿
+<div class="container">
+    <div class="head">
+        <h1 id="userHi"></h1>
+        <p>Оберіть картку:</p>
+        <select id="selecter" name="SelectCard" size="1"></select>
+    </div>
+
+    <div class="balance">
+        Баланс:&nbsp;<p id="CardBalance"></p>
+    </div>
+
+    <div class="shop-container">
+        <h2>Платежі</h2>
+        <div class="shop">
+            <div class="menu">
+                <h3>Тип платежу</h3>
+                <select id="Transactions" name="data" size=7>
+                    <option value=1>Онлайн платіж
+                    <option value=2>Кафе та ресторани
+                    <option value=3>Продукти
+                    <option value=4>Книги
+                    <option value=5>Поповнити мобільний
+                    <option value=6>Перевести на іншу картку
+                    <option value=7>Інше
+                </select>
+            </div>
+            <div class="menu-window">
+
+                <div class="input-container">
+                    <input placeholder="Вкажіть суму" class="menuInput" type="number" id="totalSum" name="resgr">
+                </div>
+
+                <div class="input-container">
+                    <input placeholder="Картка отримувача" class="menuInput" id="CardId" type="text" name="res2">
+                </div>
+
+
+                <div class="button-container">
+                    <div class="btn" type="reset" onClick="clearFields()">Скасувати</div>
+                    <div class="btn" id="Confirm">Підтвердити</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="shop-container">
+        <h2>Статистика</h2>
+        <div class="shop">
+            <div class="menu">
+                <h3>Оберіть параметр:</h3>
+                <select id="TransactionsData" name="data" size=7>
+                    <option value=1>Онлайн платіж
+                    <option value=2>Кафе та ресторани
+                    <option value=3>Продукти
+                    <option value=4>Книги
+                    <option value=5>Поповнити мобільний
+                    <option value=6>Перевести на іншу картку
+                    <option value=7>Інше
+                </select>
+
+                <div class="btn" style="margin-top: 2rem" id="allTrans">Отримати статистику</div>
+            </div>
+            <div class="menu-window">
+                <table id="StatisticResult">
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        const optionsDict = [
+            'Онлайн платіж',
+            'Кафе та ресторани',
+            'Продукти',
+            'Книги',
+            'Поповнити мобільний',
+            'Перевести на іншу картку',
+            'Інше'
+        ]
+
+        const clearFields = () => {
+            document.getElementById('totalSum').value = null;
+            document.getElementById('CardId').value = null;
+        }
+
+        $('#selecter').click(function () {
+            var selectedIndex = document.getElementById("selecter").options.selectedIndex;
+            var val = document.getElementById("selecter").options[selectedIndex].value;
+            var txtBalance = document.getElementById("CardBalance");
+
+            $.ajax({
+                type: 'GET',
+                url: "api/Cards/" + val,
+                dataType: 'json',
+                success: function (data) {
+                    txtBalance.innerHTML = data.totalMoney
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.status == '401') {
+                        $('#selecter').empty();
+                        ulTrain.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                    }
+                }
+            });
+        });
+
+        var choosenType;
+
+        $('#Transactions').click(function () {
+            var selectedIndex = document.getElementById("Transactions").options.selectedIndex;
+            var val = document.getElementById("Transactions").options[selectedIndex].value;
+            choosenType = val;
+
+        });
+
+
+        $('#Confirm').click(function () {
+
+            var data = new Object();
+
+            var selectedIndex = document.getElementById("selecter").options.selectedIndex;
+            data.cardId = document.getElementById("selecter").options[selectedIndex].value;
+            data.sum = document.getElementById("totalSum").value;
+            data.type = choosenType;
+
+            var numberrec = document.getElementById("CardId").value;
+            $.ajax({
+                type: 'POST',
+                url: "api/Cards?number=" + numberrec,
+                data: data,
+                success: function (data1) {
+                    var val = document.getElementById("selecter").options[selectedIndex].value;
+                    var txtBalance = document.getElementById("CardBalance");
+                    $.ajax({
+                        type: 'GET',
+                        url: "api/Cards/" + val,
+                        dataType: 'json',
+                        success: function (data) {
+                            txtBalance.innerHTML = data.totalMoney
+                        },
+                        complete: function (jqXHR) {
+                            if (jqXHR.status == '401') {
+                                $('#selecter').empty();
+                                ulTrain.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                            }
+                        }
+                    });
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.status == '401') {
+                        $('#selecter').empty();
+                        ulTrain.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                    }
+                }
+            });
+
+        });
+
+        $('#allTrans').click(function () {
+
+            var selectedIndex = document.getElementById("selecter").options.selectedIndex;
+            var val = document.getElementById("selecter").options[selectedIndex].value;
+
+            $.ajax({
+                type: 'GET',
+                url: "api/Transactions/" + val,
+                dataType: 'json',
+                success: function (data) {
+                    $('#StatisticResult').empty();
+                    $.each(data, function (index, val) {
+                        var type = optionsDict[val.type - 1];
+                        var sum = val.sum;
+                        var datetime = new Date(val.dateTime).toLocaleDateString([], { hour: '2-digit', minute: '2-digit' });
+                        var [date, time] = datetime.split(', ')
+
+                        $('#StatisticResult').append('<tr><td>' + sum + '</td><td>' + type + '</td><td>' + date + '</td><td>' + time + '</td></tr>');
+                    });
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.status == '401') {
+                        $('#selecter').empty();
+                        ulTrain.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                    }
+                }
+            });
+
+        });
+
+        $('#allSpentArticles').click(function () {
+
+            var selectedIndex = document.getElementById("selecter").options.selectedIndex;
+            var val = document.getElementById("selecter").options[selectedIndex].value;
+
+            var selectedTrans = document.getElementById("TransactionsData").options.selectedIndex;
+            var val2 = document.getElementById("TransactionsData").options[selectedTrans].value;
+
+            $.ajax({
+                type: 'GET',
+                url: "api/Transactions?cardId=" + String(val) + "&type=" + String(val2),
+                dataType: 'json',
+
+                success: function (data) {
+                    $('StatisticResult').empty();
+                    $.each(data, function (index, val) {
+                        var type = val.type;
+                        var sum = val.sum;
+                        var date = val.dateTime;
+                        $('StatisticResult').append('<li>' + type + ' : ' + sum + ' : ' + date + '</li>');
+                    });
+                },
+                complete: function (jqXHR) {
+                    if (jqXHR.status == '401') {
+                        $('#selecter').empty();
+                        ulTrain.append('<li style="color:red">' + jqXHR.status + ' : ' + jqXHR.statusText + '</li>');
+                    }
+                }
+            });
+
+        });
+    </script>
+    <script src="Front/CardsJavaScript.js" type="text/javascript"></script>
+
+</div>
+    
